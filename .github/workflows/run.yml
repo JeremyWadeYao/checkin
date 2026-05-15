@@ -17,5 +17,5 @@ jobs:
       - run: npm ci
       - run: npm run main
         env:
-          GLADOS: ${{ secrets.GLADOS }}
-          NOTIFY: ${{ secrets.NOTIFY }}
+          GLADOS: ${{ secrets.GLADOS_COOKIE }}
+          NOTIFY: ${{ secrets.WECOM_WEBHOOK }}
