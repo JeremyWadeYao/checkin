@@ -1,6 +1,14 @@
 {
+  "name": "glados-checkin",
+  "version": "1.0.0",
+  "description": "GLaDOS auto checkin",
   "type": "module",
   "scripts": {
     "main": "node main.js"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "MIT"
 }
