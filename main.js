@@ -10,7 +10,7 @@ const glados = async () => {
   try {
     const headers = {
       'cookie': cookie,
-      'referer': 'https://glados.rocks/console/checkin',
+      'referer': 'https://railgun.info/console/checkin',
       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       'content-type': 'application/json'
     }
@@ -18,7 +18,7 @@ const glados = async () => {
     console.log('📡 正在签到...')
     
     // 签到请求
-    const checkin = await fetch('https://glados.rocks/api/user/checkin', {
+    const checkin = await fetch('https://railgun.info/api/user/checkin', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ token: "glados.network" })
@@ -27,7 +27,7 @@ const glados = async () => {
     console.log('签到响应:', checkin)
     
     // 获取用户状态
-    const status = await fetch('https://glados.rocks/api/user/status', {
+    const status = await fetch('https://railgun.info/api/user/status', {
       method: 'GET',
       headers: headers,
     }).then((r) => r.json())
