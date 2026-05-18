@@ -1,7 +1,7 @@
 {
-  "name": "glados-checkin",
+  "name": "railgun-checkin",
   "version": "1.0.0",
-  "description": "GLaDOS auto checkin",
+  "description": "Railgun auto checkin script",
   "type": "module",
   "scripts": {
     "main": "node main.js"
