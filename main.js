@@ -73,33 +73,39 @@ const glados = async () => {
   }
 }
 
+// 修改 notify 函数（增加错误处理和返回判断）
 const notify = async (contents) => {
-  const token = process.env.NOTIFY
-  if (!token || !contents) {
-    console.log('⚠️ NOTIFY 未配置，跳过推送')
+  const webhook = process.env.WECOM_WEBHOOK  // 改为读取企业微信 Webhook
+  if (!webhook) {
+    console.log('⚠️ WECOM_WEBHOOK 未配置，跳过推送')
     return
   }
   
+  if (!contents) return
+  
   try {
-    console.log('📤 发送 PushPlus 通知...')
-    const response = await fetch('https://www.pushplus.plus/send', {
+    const payload = {
+      msgtype: "text",
+      text: {
+        content: contents.join('\n')
+      }
+    }
+    
+    console.log('📤 发送企业微信通知...')
+    const response = await fetch(webhook, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        token: token,
-        title: contents[0],
-        content: contents.join('\n\n'),
-        template: 'markdown',
-      }),
+      body: JSON.stringify(payload),
     })
+    
     const result = await response.json()
-    if (result.code === 200) {
-      console.log('✅ 推送成功')
+    if (result.errcode === 0) {
+      console.log('✅ 企业微信通知发送成功')
     } else {
-      console.log('❌ 推送失败:', result.msg)
+      console.log('❌ 企业微信通知发送失败:', result.errmsg)
     }
   } catch (error) {
-    console.error('推送失败:', error)
+    console.error('企业微信通知发送异常:', error)
   }
 }
 
